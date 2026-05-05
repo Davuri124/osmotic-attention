@@ -1,0 +1,46 @@
+{
+  "os":  "Windows-10-10.0.26200-SP0",
+  "python":  "CPython 3.10.20",
+  "startedAt":  "2026-05-05T08:32:41.259677Z",
+  "args":  [
+    "--task",
+    "sst2",
+    "--epochs",
+    "1",
+    "--batch_size",
+    "16",
+    "--embed_dim",
+    "128",
+    "--num_heads",
+    "4",
+    "--num_layers",
+    "2",
+    "--ffn_dim",
+    "512",
+    "--log_every",
+    "10"
+  ],
+  "program":  "C:\\Users\\agnes\\osmotic-attention\\src\\train.py",
+  "codePath":  "src\\train.py",
+  "codePathLocal":  "src\\train.py",
+  "git":  {
+    "remote":  "https://github.com/Davuri124/osmotic-attention.git",
+    "commit":  "3fd41912450e6a6266b42f564a86c0cecc4694d9"
+  },
+  "email":  "at22csb0a36@student.nitw.ac.in",
+  "root":  "C:\\Users\\agnes\\osmotic-attention",
+  "host":  "Agnes",
+  "executable":  "E:\\osmotic\\python.exe",
+  "cpu_count":  10,
+  "cpu_count_logical":  12,
+  "disk":  {
+    "/":  {
+      "total":  "216120946688",
+      "used":  "206844743680"
+    }
+  },
+  "memory":  {
+    "total":  "16890978304"
+  },
+  "writerId":  "0jo8r3ulxbn8c3sf1wl6ewcjfimsnpkd"
+}

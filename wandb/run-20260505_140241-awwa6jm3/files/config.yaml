@@ -1,0 +1,106 @@
+_wandb:
+    value:
+        cli_version: 0.26.1
+        e:
+            0jo8r3ulxbn8c3sf1wl6ewcjfimsnpkd:
+                args:
+                    - --task
+                    - sst2
+                    - --epochs
+                    - "1"
+                    - --batch_size
+                    - "16"
+                    - --embed_dim
+                    - "128"
+                    - --num_heads
+                    - "4"
+                    - --num_layers
+                    - "2"
+                    - --ffn_dim
+                    - "512"
+                    - --log_every
+                    - "10"
+                codePath: src\train.py
+                codePathLocal: src\train.py
+                cpu_count: 10
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "216120946688"
+                        used: "206844743680"
+                email: at22csb0a36@student.nitw.ac.in
+                executable: E:\osmotic\python.exe
+                git:
+                    commit: 3fd41912450e6a6266b42f564a86c0cecc4694d9
+                    remote: https://github.com/Davuri124/osmotic-attention.git
+                host: Agnes
+                memory:
+                    total: "16890978304"
+                os: Windows-10-10.0.26200-SP0
+                program: C:\Users\agnes\osmotic-attention\src\train.py
+                python: CPython 3.10.20
+                root: C:\Users\agnes\osmotic-attention
+                startedAt: "2026-05-05T08:32:41.259677Z"
+                writerId: 0jo8r3ulxbn8c3sf1wl6ewcjfimsnpkd
+        m: []
+        python_version: 3.10.20
+        t:
+            "1":
+                - 1
+                - 5
+                - 11
+                - 49
+                - 51
+                - 53
+                - 71
+            "2":
+                - 1
+                - 5
+                - 11
+                - 49
+                - 51
+                - 53
+                - 71
+            "3":
+                - 2
+                - 13
+                - 16
+            "4": 3.10.20
+            "5": 0.26.1
+            "6": 5.7.0
+            "8":
+                - 3
+            "12": 0.26.1
+            "13": windows-amd64
+batch_size:
+    value: 16
+dropout:
+    value: 0.1
+embed_dim:
+    value: 128
+epochs:
+    value: 1
+ffn_dim:
+    value: 512
+log_every:
+    value: 10
+lr:
+    value: 0.0002
+max_seq_len:
+    value: 128
+num_heads:
+    value: 4
+num_layers:
+    value: 2
+run_name:
+    value: null
+save_dir:
+    value: experiments/checkpoints
+task:
+    value: sst2
+wandb_project:
+    value: osmotic-attention
+warmup_ratio:
+    value: 0.1
+weight_decay:
+    value: 0.01
