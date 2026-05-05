@@ -1,0 +1,102 @@
+_wandb:
+    value:
+        cli_version: 0.26.1
+        e:
+            r4tbz9edv9ex9vknn9u217juhkafr3tb:
+                args:
+                    - --tasks
+                    - sst2
+                    - --epochs
+                    - "1"
+                    - --batch_size
+                    - "16"
+                    - --embed_dim
+                    - "128"
+                    - --num_heads
+                    - "4"
+                    - --num_layers
+                    - "2"
+                    - --ffn_dim
+                    - "512"
+                    - --run_baselines
+                codePath: src\evaluate.py
+                codePathLocal: src\evaluate.py
+                cpu_count: 10
+                cpu_count_logical: 12
+                disk:
+                    /:
+                        total: "216120946688"
+                        used: "206993948672"
+                email: at22csb0a36@student.nitw.ac.in
+                executable: E:\osmotic\python.exe
+                git:
+                    commit: 401ed5277177ae3804e3dc086162e2b5a83438e4
+                    remote: https://github.com/Davuri124/osmotic-attention.git
+                host: Agnes
+                memory:
+                    total: "16890978304"
+                os: Windows-10-10.0.26200-SP0
+                program: C:\Users\agnes\osmotic-attention\src\evaluate.py
+                python: CPython 3.10.20
+                root: C:\Users\agnes\osmotic-attention
+                startedAt: "2026-05-05T09:03:27.108343Z"
+                writerId: r4tbz9edv9ex9vknn9u217juhkafr3tb
+        m: []
+        python_version: 3.10.20
+        t:
+            "1":
+                - 1
+                - 5
+                - 11
+                - 49
+                - 51
+                - 53
+                - 71
+                - 100
+            "2":
+                - 1
+                - 5
+                - 11
+                - 49
+                - 51
+                - 53
+                - 71
+                - 100
+            "3":
+                - 2
+                - 13
+                - 16
+            "4": 3.10.20
+            "5": 0.26.1
+            "6": 5.7.0
+            "8":
+                - 3
+            "12": 0.26.1
+            "13": windows-amd64
+batch_size:
+    value: 16
+checkpoint:
+    value: null
+embed_dim:
+    value: 128
+epochs:
+    value: 1
+ffn_dim:
+    value: 512
+lr:
+    value: 0.0002
+max_seq_len:
+    value: 128
+num_heads:
+    value: 4
+num_layers:
+    value: 2
+results_dir:
+    value: experiments/results
+run_baselines:
+    value: true
+tasks:
+    value:
+        - sst2
+wandb_project:
+    value: osmotic-attention

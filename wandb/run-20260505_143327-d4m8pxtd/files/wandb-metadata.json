@@ -1,0 +1,45 @@
+{
+  "os":  "Windows-10-10.0.26200-SP0",
+  "python":  "CPython 3.10.20",
+  "startedAt":  "2026-05-05T09:03:27.108343Z",
+  "args":  [
+    "--tasks",
+    "sst2",
+    "--epochs",
+    "1",
+    "--batch_size",
+    "16",
+    "--embed_dim",
+    "128",
+    "--num_heads",
+    "4",
+    "--num_layers",
+    "2",
+    "--ffn_dim",
+    "512",
+    "--run_baselines"
+  ],
+  "program":  "C:\\Users\\agnes\\osmotic-attention\\src\\evaluate.py",
+  "codePath":  "src\\evaluate.py",
+  "codePathLocal":  "src\\evaluate.py",
+  "git":  {
+    "remote":  "https://github.com/Davuri124/osmotic-attention.git",
+    "commit":  "401ed5277177ae3804e3dc086162e2b5a83438e4"
+  },
+  "email":  "at22csb0a36@student.nitw.ac.in",
+  "root":  "C:\\Users\\agnes\\osmotic-attention",
+  "host":  "Agnes",
+  "executable":  "E:\\osmotic\\python.exe",
+  "cpu_count":  10,
+  "cpu_count_logical":  12,
+  "disk":  {
+    "/":  {
+      "total":  "216120946688",
+      "used":  "206993948672"
+    }
+  },
+  "memory":  {
+    "total":  "16890978304"
+  },
+  "writerId":  "r4tbz9edv9ex9vknn9u217juhkafr3tb"
+}

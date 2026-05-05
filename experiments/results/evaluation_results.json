@@ -1,0 +1,14 @@
+{
+  "sst2": {
+    "task": "sst2",
+    "osmotic_acc": 0.8079545454545455,
+    "vanilla_acc": 0.7113636363636363,
+    "improvement": 0.09659090909090917,
+    "ablations": {
+      "Full Osmotic": 0.821590909090909,
+      "No Membrane": 0.8068181818181818,
+      "Fixed Lambda": 0.8068181818181818,
+      "No Osmosis": 0.7170454545454545
+    }
+  }
+}

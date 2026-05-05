@@ -1,0 +1,51 @@
+
+============================================================
+EVALUATING TASK: SST2
+============================================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Map: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 67349/67349 [00:02<00:00, 22618.89 examples/s]
+Map: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 872/872 [00:00<00:00, 11017.86 examples/s]
+Map: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1821/1821 [00:00<00:00, 17011.81 examples/s]
+
+Training OsmoticTransformer...
+  [Osmotic] Epoch 1/1 | Val Acc: 0.8080 | Val Loss: 0.4910
+
+Training VanillaTransformer baseline...
+  [Vanilla] Epoch 1/1 | Val Acc: 0.7114 | Val Loss: 0.5480
+
+📊 SST2 RESULTS:
+  Osmotic Acc : 0.8080
+  Vanilla Acc : 0.7114
+  Improvement : +0.0966
+
+============================================================
+ABLATION STUDY — SST2
+============================================================
+
+Running: Full Osmotic
+  [Full Osmotic] Epoch 1/1 | Val Acc: 0.8216 | Val Loss: 0.4641
+  → Best Val Acc: 0.8216
+
+Running: No Membrane
+  [No Membrane] Epoch 1/1 | Val Acc: 0.8068 | Val Loss: 0.4557
+  → Best Val Acc: 0.8068
+
+Running: Fixed Lambda
+  [Fixed Lambda] Epoch 1/1 | Val Acc: 0.8068 | Val Loss: 0.4614
+  → Best Val Acc: 0.8068
+
+Running: No Osmosis
+  [No Osmosis] Epoch 1/1 | Val Acc: 0.7170 | Val Loss: 0.5502
+  → Best Val Acc: 0.7170
+
+============================================================
+FINAL RESULTS SUMMARY
+============================================================
+
+SST2:
+  Osmotic Acc : 0.8080
+  Vanilla Acc : 0.7114
+  Improvement : +0.0966
+  Ablations   : {'Full Osmotic': 0.821590909090909, 'No Membrane': 0.8068181818181818, 'Fixed Lambda': 0.8068181818181818, 'No Osmosis': 0.7170454545454545}
+
+Results saved to experiments/results\evaluation_results.json
