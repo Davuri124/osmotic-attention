@@ -73,10 +73,11 @@ class OsmoticSelfAttention(nn.Module):
         )
 
         # Membrane permeability gate per head
-        self.membrane_proj = nn.Linear(
-            2 * self.attention_head_size,
-            1,
-            bias=True
+        self.membrane_proj_i = nn.Linear(
+            self.attention_head_size, 1, bias=True
+        )
+        self.membrane_proj_j = nn.Linear(
+            self.attention_head_size, 1, bias=False
         )
 
         # Per-head osmotic coupling (starts at 0 = standard BERT)
@@ -92,8 +93,9 @@ class OsmoticSelfAttention(nn.Module):
         lambda=0 means model starts identical to pretrained BERT.
         """
         nn.init.xavier_uniform_(self.rho_proj.weight)
-        nn.init.xavier_uniform_(self.membrane_proj.weight)
-        nn.init.zeros_(self.membrane_proj.bias)
+        nn.init.xavier_uniform_(self.membrane_proj_i.weight)
+        nn.init.xavier_uniform_(self.membrane_proj_j.weight)
+        nn.init.zeros_(self.membrane_proj_i.bias)
         nn.init.zeros_(self.lambda_h)  # Critical: start as vanilla BERT
 
     def transpose_for_scores(self, x):
@@ -131,20 +133,13 @@ class OsmoticSelfAttention(nn.Module):
         return rho_j - rho_i       # [B, N, N]
 
     def compute_membrane(self, h_i, h_j):
-        """
-        Learned membrane permeability gate.
-        M[i,j] = sigmoid(W_m * [h_i || h_j])
-        
-        Args:
-            h_i, h_j: [batch, seq_len, head_dim]
-        Returns:
-            M: [batch, seq_len, seq_len]
-        """
-        N = h_i.size(1)
-        h_i_exp = h_i.unsqueeze(2).expand(-1, -1, N, -1)
-        h_j_exp = h_j.unsqueeze(1).expand(-1, N, -1, -1)
-        h_cat = torch.cat([h_i_exp, h_j_exp], dim=-1)
-        return torch.sigmoid(self.membrane_proj(h_cat).squeeze(-1))
+        # Memory efficient: factorized membrane
+        # Instead of [B,N,N,2D] → compute per-token scores and outer product
+        # Reduces memory from O(N²D) to O(ND)
+        m_i = self.membrane_proj_i(h_i)  # [B, N, 1]
+        m_j = self.membrane_proj_j(h_j)  # [B, N, 1]
+        M = torch.sigmoid(m_i + m_j.transpose(1, 2))  # [B, N, N]
+        return M
 
     def forward(
         self,
