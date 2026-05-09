@@ -48,7 +48,8 @@ class OsmoticAttention(nn.Module):
         self.rho_proj = nn.Linear(self.head_dim, self.head_dim)
         
         # Membrane permeability gate
-        self.membrane_proj = nn.Linear(2 * self.head_dim, 1)
+        self.membrane_proj_i = nn.Linear(self.head_dim, 1, bias=True)
+        self.membrane_proj_j = nn.Linear(self.head_dim, 1, bias=False)
         
         # Per-head osmotic coupling coefficient (lambda)
         # One lambda per head — learnable
@@ -64,6 +65,9 @@ class OsmoticAttention(nn.Module):
         nn.init.xavier_uniform_(self.v_proj.weight)
         nn.init.xavier_uniform_(self.out_proj.weight)
         nn.init.xavier_uniform_(self.rho_proj.weight)
+        nn.init.xavier_uniform_(self.membrane_proj_i.weight)
+        nn.init.xavier_uniform_(self.membrane_proj_j.weight)
+        nn.init.zeros_(self.membrane_proj_i.bias)
         nn.init.zeros_(self.lambda_h)  # Start as standard attention!
     
     def compute_information_density(self, hidden: torch.Tensor) -> torch.Tensor:
@@ -100,30 +104,12 @@ class OsmoticAttention(nn.Module):
         delta_pi = rho_j - rho_i  # [batch, seq_len, seq_len]
         return delta_pi
     
-    def compute_membrane_permeability(
-        self, 
-        h_i: torch.Tensor, 
-        h_j: torch.Tensor
-    ) -> torch.Tensor:
-        """
-        Compute learned membrane permeability gate between token pairs.
-        M[i,j] = sigmoid(W_m * [h_i || h_j])
-        
-        Args:
-            h_i: [batch, seq_len, head_dim]
-            h_j: [batch, seq_len, head_dim]
-        Returns:
-            M: [batch, seq_len, seq_len]
-        """
-        seq_len = h_i.size(1)
-        
-        # Expand for pairwise computation
-        h_i_exp = h_i.unsqueeze(2).expand(-1, -1, seq_len, -1)  # [B, n, n, d]
-        h_j_exp = h_j.unsqueeze(1).expand(-1, seq_len, -1, -1)  # [B, n, n, d]
-        
-        # Concatenate and project
-        h_cat = torch.cat([h_i_exp, h_j_exp], dim=-1)  # [B, n, n, 2d]
-        M = torch.sigmoid(self.membrane_proj(h_cat).squeeze(-1))  # [B, n, n]
+    def compute_membrane_permeability(self, h_i, h_j):
+        # Memory efficient factorized membrane
+        # O(ND) instead of O(N²D) — critical for long sequences!
+        m_i = self.membrane_proj_i(h_i)              # [B, N, 1]
+        m_j = self.membrane_proj_j(h_j)              # [B, N, 1]
+        M = torch.sigmoid(m_i + m_j.transpose(1, 2)) # [B, N, N]
         return M
     
     def forward(
