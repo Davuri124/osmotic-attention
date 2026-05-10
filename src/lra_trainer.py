@@ -514,7 +514,7 @@ def load_lra_task(task, max_seq_len):
     print(f"  Loading {task} dataset...")
 
     if task == "listops":
-        dataset = load_dataset("GKLMIP/listops-1000", trust_remote_code=True)
+        dataset = load_dataset("nyu-mll/listops-1000")
         vocab = build_listops_vocab(dataset["train"])
         train_data = LRAListOpsDataset(dataset["train"], vocab, max_seq_len)
         val_data = LRAListOpsDataset(dataset["validation"], vocab, max_seq_len)
