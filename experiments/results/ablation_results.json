@@ -1,0 +1,12 @@
+{
+  "A1_Full_Osmotic": 0.5814220183486238,
+  "A2_No_Membrane": 0.5871559633027523,
+  "A3_Shared_Lambda_Heads": 0.588302752293578,
+  "A4_Shared_Lambda_Layers": 0.5940366972477065,
+  "A5_Fixed_Positive_Lambda": 0.5905963302752294,
+  "A6_Fixed_Negative_Lambda": 0.5642201834862385,
+  "A7_L2_Density": 0.5940366972477065,
+  "A8_Variance_Density": 0.5905963302752294,
+  "A9_Random_Init": 0.5894495412844036,
+  "A10_No_Osmosis": 0.5974770642201835
+}
